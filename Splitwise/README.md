@@ -1,4 +1,5 @@
 ```mermaid
+%%{init: {"layout": "elk"}}%%
 classDiagram
     direction TD
     
