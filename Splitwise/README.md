@@ -1,7 +1,6 @@
 ```mermaid
-%%{init: {"layout": "elk"}}%%
 classDiagram
-    direction TD
+    direction LR
     
     class Group {
         -string id
@@ -61,10 +60,6 @@ classDiagram
         +getSplitStrategy(splitType: SplitType): SplitStrategy
     }
     
-    SplitStrategy <|.. PercentageSplitStrategy
-    SplitStrategy <|.. EqualSplitStrategy
-    SplitStrategyFactory ..> SplitStrategy : creates
-    
     class GroupRepository {
         -Map~string, Group~ groups
         +save(group: Group): void
@@ -94,6 +89,9 @@ classDiagram
         +updateBalanceSheet(group: Group, paidBy: User, expense: Expense): void
     }
     
+    SplitStrategy <|.. PercentageSplitStrategy
+    SplitStrategy <|.. EqualSplitStrategy
+    SplitStrategyFactory ..> SplitStrategy : creates
     ExpenseService --> BalanceSheetService : uses
     GroupService --> ExpenseService : uses
     GroupService --> DebtSimplificationService : uses
